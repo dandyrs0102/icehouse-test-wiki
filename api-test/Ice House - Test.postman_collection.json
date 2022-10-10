@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "825003f2-b0ee-482e-8f77-80a3a094a95e",
+		"name": "Ice House - Test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5253705"
+	},
+	"item": [
+		{
+			"name": "list-author",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData=pm.response.json();",
+							"",
+							"pm.test(\"Verify status should be 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.ok;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test (\"Verifies data should be an array\",function(){",
+							"    pm.expect(jsonData.ebooks).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ic3hous3",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "icehouse",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/ebooks?category=<category_id>",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ebooks"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "<category_id>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "list-category",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData=pm.response.json();",
+							"",
+							"pm.test(\"Verify status should be 200 \", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.ok;",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test (\"Verifies data should be an array\",function(){",
+							"    pm.expect(jsonData.ebooks).to.be.an(\"array\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ic3hous3",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "icehouse",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/v1/ebooks?author=<author_id>",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ebooks"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "<author_id>"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Negative - Create ebook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify mandatory value is missing\",function (){",
+							"    pm.response.to.have.status(400);",
+							"    pm.expect(pm.response.code).not.eql(201,200);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ic3hous3",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "icehouse",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"\",\n \n    \"author_id\":\"\",\n    \"category_id\":\"\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/ebook",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ebook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Positive - Create ebook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"",
+							"pm.test(\"Verify create ebook\",function (){",
+							"    pm.response.to.have.status(201);",
+							"    pm.expect(pm.response.code).not.to.eql(400);",
+							"     ",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ic3hous3",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "icehouse",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\":\"sci-34234\",\n    \"title\":\"Kambing Jantan\",\n    \"author\":\"Raditya Dika\",\n    \"author_id\":\"rd-234\",\n    \"category_id\":\"rom\"\n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/ebook",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ebook"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update ebook",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData =  pm.response.json();",
+							"let newTitle = \"Kambing Jantan 2\";",
+							"",
+							"pm.test(\"Verify update ebook\",function (){",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.code).not.to.eql(400);",
+							" ",
+							"});",
+							"",
+							"pm.test(\"Verify edited title\",function(){",
+							"    pm.expect(jsonData.title).to.eql(newTitle);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "ic3hous3",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "icehouse",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n   \n    \"title\": \"Kambing Jantan 2\",\n    \"author_id\": \"rd-234\",\n    \"category_id\": \"Rom\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/v1/ebook/ ROM-23851",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"v1",
+						"ebook",
+						" ROM-23851"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
