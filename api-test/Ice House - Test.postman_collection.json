@@ -133,7 +133,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Verify mandatory value is missing\",function (){",
+							"pm.test(\"Verifies if mandatory value is missing\",function (){",
 							"    pm.response.to.have.status(400);",
 							"    pm.expect(pm.response.code).not.eql(201,200);",
 							"})"
@@ -162,7 +162,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":\"\",\n \n    \"author_id\":\"\",\n    \"category_id\":\"\"\n\n}",
+					"raw": "{\n    \"id\":\"SCI-234\",\n    \"author_id\":\"Tolkien\",\n    \"category_id\":\"Sci\"\n\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -220,7 +220,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"id\":\"sci-34234\",\n    \"title\":\"Kambing Jantan\",\n    \"author\":\"Raditya Dika\",\n    \"author_id\":\"rd-234\",\n    \"category_id\":\"rom\"\n    \n}",
+					"raw": "{\n    \"id\":\"rom-34234\",\n    \"title\":\"Kambing Jantan\",\n    \"author\":\"Raditya Dika\",\n    \"author_id\":\"rd-234\",\n    \"category_id\":\"rom\"\n    \n}",
 					"options": {
 						"raw": {
 							"language": "json"
